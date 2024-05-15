@@ -20,6 +20,8 @@ public class Conexion {
         try {
 
             Class.forName("org.mariadb.jdbc.Driver");
+            
+            JOptionPane.showMessageDialog(null, "Libreria cargada exitosamente");
 
         } catch (ClassNotFoundException ex) {
 
@@ -43,6 +45,8 @@ public class Conexion {
             // Setup the connection with the DB
             con = DriverManager.getConnection(url + "?useLegacyDatetimeCode=false&serverTimezone=UTC" + "&user=" + usuario + "&password=" + password);
 
+            JOptionPane.showMessageDialog(null, "CONECTADO exitosamente a Base De Datos");
+            
         } catch (SQLException ex) {
 
             int error = ex.getErrorCode();

@@ -17,6 +17,7 @@ public class LAB_ITPN14 {
         Connection con = Conexion.getConexion();
         
         // PROBANDO CAMBIO A VER
+        //Agregado JoptionPane, de confirmacion a conexion de libreria y base de datos.
         
     }
     
