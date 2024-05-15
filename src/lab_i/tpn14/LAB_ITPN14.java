@@ -18,6 +18,7 @@ public class LAB_ITPN14 {
         
         // PROBANDO CAMBIO A VER
         //Agregado JoptionPane, de confirmacion a conexion de libreria y base de datos.
+        //lalala
         
     }
     
