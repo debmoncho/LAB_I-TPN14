@@ -1,13 +1,13 @@
 
 package lab_i.tpn14;
 
+import AccesoADatos.AlumnoData;
 import AccesoADatos.Conexion;
-import java.sql.Connection;
+import entidades.Alumno;
+import java.sql.*;
+import java.time.LocalDate;
 
-/**
- *
- * @author Deb APBT
- */
+
 public class LAB_ITPN14 {
 
 
@@ -17,6 +17,10 @@ public class LAB_ITPN14 {
         Connection con = Conexion.getConexion();
         
         // PROBANDO CAMBIO A VER
+        
+        Alumno pedro = new Alumno(40567231, "Luna", "Pedro", LocalDate.of(1997,11,21), true);
+        AlumnoData data = new AlumnoData();
+        data.guardarAlumno(pedro);
         
     }
     
