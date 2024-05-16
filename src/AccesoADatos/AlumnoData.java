@@ -46,4 +46,52 @@ public class AlumnoData {
     
     
     }
+    
+    public void modificarAlumno(Alumno alumno){
+        
+         String sql= "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaDeNacimiento=?"
+                 + "  WHERE idAlumno=? ";
+           
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, alumno.getDni());
+            ps.setString(2, alumno.getApellido());
+            ps.setString(3, alumno.getNombre());
+            ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
+            ps.setInt(5, alumno.getIdAlumno());
+            int exito=ps.executeUpdate();
+            
+            if(exito==1){
+                JOptionPane.showMessageDialog(null, "Alumno modificado");
+            }
+            
+        
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al modificar alumno");
+        }    
+    }
+    
+    public void eliminarAlumno(int id){
+        
+        String sql="UPDATE alumno SET estado= 0  WHERE idAlumno= ? ";
+        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int exito=ps.executeUpdate();
+            
+            if(exito==1){
+                 JOptionPane.showMessageDialog(null, "Alumno eliminado");
+            }
+            
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "error al eliminar el alumno");
+        }
+        
+        
+    }
+    
+    
+    
 }

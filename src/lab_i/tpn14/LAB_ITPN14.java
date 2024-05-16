@@ -18,10 +18,11 @@ public class LAB_ITPN14 {
         
         // PROBANDO CAMBIO A VER
         
-        Alumno pedro = new Alumno(40567231, "Luna", "Pedro", LocalDate.of(1997,11,21), true);
+        Alumno pedro = new Alumno(5,40567231, "Luna", "Juan Pedro", LocalDate.of(1997,11,21), true);
         AlumnoData data = new AlumnoData();
-        data.guardarAlumno(pedro);
-        
+//        data.guardarAlumno(pedro);
+//         data.modificarAlumno(pedro);      
+            data.eliminarAlumno(5);
     }
     
 }
