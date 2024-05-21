@@ -2,7 +2,9 @@ package lab_i.tpn14;
 
 import AccesoADatos.AlumnoData;
 import AccesoADatos.Conexion;
+import AccesoADatos.MateriaData;
 import entidades.Alumno;
+import entidades.Materia;
 import java.sql.*;
 import java.time.LocalDate;
 
@@ -33,9 +35,9 @@ public class LAB_ITPN14 {
 //            System.out.println("Apellido " + encontrado.getApellido());
 //            System.out.println("Nombre " + encontrado.getNombre());
 //        }
-        AlumnoData data = new AlumnoData();
+//        AlumnoData data = new AlumnoData();
         
-        for(Alumno alumno:data.listarAlumno()){
+//        for(Alumno alumno:data.listarAlumno()){
             //manera ordenada de ver los datos de los elementos
 //            System.out.println(alumno.getDni());
 //            System.out.println(alumno.getApellido());
@@ -43,11 +45,15 @@ public class LAB_ITPN14 {
 //            System.out.println(alumno.getFechaNac());
 //            System.out.println("");
 //      ver los elementos con un to string
-            System.out.println(alumno);
-            System.out.println("");
-        }
-        
+//            System.out.println(alumno);
+//            System.out.println("");
+//        }
 
+//      ----------------------------------------------------------------------------------
+        
+        Materia historia = new Materia("Historia", 4, true);
+        MateriaData data = new MateriaData();
+        data.guardarMateria(historia);
     }
 
 }
