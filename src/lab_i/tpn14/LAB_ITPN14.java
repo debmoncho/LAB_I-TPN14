@@ -61,8 +61,34 @@ public class LAB_ITPN14 {
         //MateriaData data = new MateriaData();
         //data.modificarMateria(historia);
         
+        // ELIMINAMOS UNA MATERIA POR ESTADO
+        //MateriaData data = new MateriaData();
+        //data.eliminarMateria(1);
+       
+        // BUSCAR MATERIA POR ID
+        //MateriaData data = new MateriaData();
+        //Materia encontrada= data.buscarMateria(3);
+        
+        //System.out.println("Id: " + encontrada.getIdMateria());
+        //System.out.println("Nombre: "+encontrada.getNombre());
+        //System.out.println("Año: " + encontrada.getAnioMateria());
+        
+        // BUSCAR MATERIA POR AÑO
+        //MateriaData data = new MateriaData();
+        //Materia encontrada= data.buscarMateriaPorAnio(1);
+        
+        //System.out.println("Año: " + encontrada.getAnioMateria());
+        //System.out.println("Id: " + encontrada.getIdMateria());
+        //System.out.println("Nombre: "+encontrada.getNombre());
+        //System.out.println("");
+        
+        // LISTAR MATERIAS ACTIVAS
         MateriaData data = new MateriaData();
-        data.eliminarMateria(1);
+        for(Materia materia:data.listarMateria()){
+              
+           System.out.println(materia);
+           System.out.println("");
+       }
     }
 
 }

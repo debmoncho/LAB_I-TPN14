@@ -3,6 +3,8 @@ package AccesoADatos;
 
 import entidades.Materia;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 
@@ -84,6 +86,90 @@ public class MateriaData {
         }
     }
     
+     public Materia buscarMateria(int id) {
+
+        String sql = "SELECT  nombre, año, estado FROM materia WHERE idMateria= ? AND estado= 1";
+        Materia materia = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                materia = new Materia();
+                materia.setIdMateria(id);
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa materia");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la materia ");
+        }
+        
+        return materia;
+    }
+     
+      public Materia buscarMateriaPorAnio(int anioMateria) {
+
+        String sql = "SELECT  idMateria, nombre, estado FROM materia WHERE año= ? AND estado= 1";
+        Materia materia = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, anioMateria);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                materia = new Materia();
+                materia.setAnioMateria(anioMateria);
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setActivo(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe esa materia");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la materia ");
+        }
+        
+        return materia;
+    }
+     
+     public List<Materia> listarMateria() {
+         
+        String sql = "SELECT  idMateria, nombre, año FROM materia WHERE  estado= 1";
+        ArrayList<Materia> materias = new ArrayList<>();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+         
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()) {
+                
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(true);
+                
+                materias.add(materia);
+                
+            } 
+
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar la materia ");
+        }
+        
+        return materias;
+    }
+     
 }
 
 
