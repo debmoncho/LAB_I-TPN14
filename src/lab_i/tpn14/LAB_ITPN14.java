@@ -50,10 +50,19 @@ public class LAB_ITPN14 {
 //        }
 
 //      ----------------------------------------------------------------------------------
+        // AGREGAR MATERIA
+//        Materia historia = new Materia("Historia", 4, true);
+//        MateriaData data = new MateriaData();
+        //data.guardarMateria(historia);
         
-        Materia historia = new Materia("Historia", 4, true);
+        // MODIFICAR MATERIA - GEOGRAFIA
+        
+        //Materia historia = new Materia(5,"Historia Argentina", 5, true);
+        //MateriaData data = new MateriaData();
+        //data.modificarMateria(historia);
+        
         MateriaData data = new MateriaData();
-        data.guardarMateria(historia);
+        data.eliminarMateria(1);
     }
 
 }
