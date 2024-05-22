@@ -2,8 +2,10 @@ package lab_i.tpn14;
 
 import AccesoADatos.AlumnoData;
 import AccesoADatos.Conexion;
+import AccesoADatos.InscripcionData;
 import AccesoADatos.MateriaData;
 import entidades.Alumno;
+import entidades.Inscripcion;
 import entidades.Materia;
 import java.sql.*;
 import java.time.LocalDate;
@@ -83,12 +85,78 @@ public class LAB_ITPN14 {
         //System.out.println("");
         
         // LISTAR MATERIAS ACTIVAS
-        MateriaData data = new MateriaData();
-        for(Materia materia:data.listarMateria()){
-              
-           System.out.println(materia);
-           System.out.println("");
-       }
+//        MateriaData data = new MateriaData();
+//        for(Materia materia:data.listarMateria()){
+//              
+//           System.out.println(materia);
+//           System.out.println("");
+//       }
+
+//----------------------------------------------------------------------------------------------
+    
+        //INSCRIBIMOS ALUMNO
+
+        AlumnoData ad = new AlumnoData();
+
+        MateriaData md = new MateriaData();
+        
+        InscripcionData id = new InscripcionData();
+        
+        //crea un alumno y luego lo busco con el metodo de ad
+        Alumno jeriko = ad.buscarAlumno(3);
+        
+        Materia musica = md.buscarMateria(3);
+        
+        // generamos una inscripcion
+        //Inscripcion inscripcion = new Inscripcion(7, jeriko, musica);
+        
+        //y aca la guardamos
+//        id.guardarInscripcion(inscripcion);
+        
+        
+
+        // ACTUALIZAMOS NOTA AL MISMO ALUMNO ANTERIOR
+        //y la guardamos
+        
+//        id.actualizarNota(3, 3, 10);
+        
+        
+
+        // BORRAMOS INCRIPCION
+        
+//        id.borrarInscripcion(3, 3);
+        
+        
+        // OBTENEMOS INCRIPCIONES
+        
+
+//        for (Inscripcion inscripcion : id.obtenerInscripciones()) {
+//            
+//            System.out.println("id: " + inscripcion.getIdInscripcion());
+//            System.out.println("apellido: " + inscripcion.getAlumno().getApellido());
+//            System.out.println("materia: " + inscripcion.getMateria().getNombre());
+//            System.out.println(" ");
+//        }
+        
+        // N de R: Tuvimos que activar "matematica", que estaba deshabilitada, por que nos producia
+        //un error que decia que "la materia no existe". Una vez habilitada de nuevo, el programa
+        // se pudo ejecutar.
+
+        
+        
+        
+        // INSCRIPCIONES POR ALUMNO
+        
+        
+        for (Inscripcion inscripcion : id.obtenerInscripcionesPorAlumno(3)) {
+
+            System.out.println("id: " + inscripcion.getIdInscripcion());
+            System.out.println("apellido: " + inscripcion.getAlumno().getApellido());
+            System.out.println("materia: " + inscripcion.getMateria().getNombre());
+            System.out.println(" ");
+        }
+        
+        
     }
 
 }
