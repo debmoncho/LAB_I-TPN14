@@ -103,9 +103,9 @@ public class LAB_ITPN14 {
         InscripcionData id = new InscripcionData();
         
         //crea un alumno y luego lo busco con el metodo de ad
-        Alumno jeriko = ad.buscarAlumno(3);
-        
-        Materia musica = md.buscarMateria(3);
+//        Alumno jeriko = ad.buscarAlumno(3);
+//        
+//        Materia musica = md.buscarMateria(3);
         
         // generamos una inscripcion
         //Inscripcion inscripcion = new Inscripcion(7, jeriko, musica);
@@ -147,15 +147,44 @@ public class LAB_ITPN14 {
         
         // INSCRIPCIONES POR ALUMNO
         
+//        
+//        for (Inscripcion inscripcion : id.obtenerInscripcionesPorAlumno(3)) {
+//
+//            System.out.println("id: " + inscripcion.getIdInscripcion());
+//            System.out.println("apellido: " + inscripcion.getAlumno().getApellido());
+//            System.out.println("materia: " + inscripcion.getMateria().getNombre());
+//            System.out.println(" ");
+//        }
+//        
+//             OBTENEMOS LA MATERIA CURSADAS CON EL ID DEL ALUMNO
         
-        for (Inscripcion inscripcion : id.obtenerInscripcionesPorAlumno(3)) {
+//         for (Materia materia : id.obtenerMateriaCursada(2)) {
+//
+//            System.out.println("id: " + materia.getIdMateria());        
+//            System.out.println("materia: " + materia.getNombre());
+//             System.out.println("año: "+ materia.getAnioMateria());
+//            System.out.println(" ");
+//        }
+//        OBTENEMOS LA  MATERIA NO CURSADAS CON EL ID DEL ALUMNO
 
-            System.out.println("id: " + inscripcion.getIdInscripcion());
-            System.out.println("apellido: " + inscripcion.getAlumno().getApellido());
-            System.out.println("materia: " + inscripcion.getMateria().getNombre());
+//            for (Materia materia : id.obtenerMateriaNoCursada(2)) {
+//
+//            System.out.println("id: " + materia.getIdMateria());        
+//            System.out.println("materia: " + materia.getNombre());
+//             System.out.println("año: "+ materia.getAnioMateria());
+//            System.out.println(" ");
+//        }
+//        
+// OBTENEMOS ALUMNO POR MATERIA
+
+                for (Alumno alumno : id.obtenerAlumnoPorMateria(1)) {
+
+            System.out.println("id: " + alumno.getIdAlumno());        
+            System.out.println("nombre: " + alumno.getNombre());
+           System.out.println("apellido: "+ alumno.getApellido());
+           System.out.println("fecha de Nacimiento "+ alumno.getFechaNac());  
             System.out.println(" ");
         }
-        
         
     }
 
