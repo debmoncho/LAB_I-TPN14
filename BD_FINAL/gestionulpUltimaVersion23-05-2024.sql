@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2024 a las 22:07:00
--- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: May 24, 2024 at 04:13 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `gestionulp`
+-- Database: `gestionulp`
 --
 CREATE DATABASE IF NOT EXISTS `gestionulp` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `gestionulp`;
@@ -26,7 +26,7 @@ USE `gestionulp`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `alumno`
+-- Table structure for table `alumno`
 --
 
 CREATE TABLE `alumno` (
@@ -39,19 +39,19 @@ CREATE TABLE `alumno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `alumno`
+-- Dumping data for table `alumno`
 --
 
 INSERT INTO `alumno` (`idAlumno`, `dni`, `apellido`, `nombre`, `fechaDeNacimiento`, `estado`) VALUES
 (2, 31594876, 'Tobares', 'Blas', '1991-05-22', 1),
 (3, 52684522, 'Jeriko', 'Daniel', '1985-05-01', 1),
 (4, 4512358, 'Lopez', 'Jose', '2002-10-19', 1),
-(5, 40567231, 'Luna', 'Juan Pedro', '1997-11-21', 0);
+(5, 40567231, 'Luna', 'Pedro', '1997-11-21', 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `inscripcion`
+-- Table structure for table `inscripcion`
 --
 
 CREATE TABLE `inscripcion` (
@@ -62,7 +62,7 @@ CREATE TABLE `inscripcion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `inscripcion`
+-- Dumping data for table `inscripcion`
 --
 
 INSERT INTO `inscripcion` (`idInscripcion`, `nota`, `idAlumno`, `idMateria`) VALUES
@@ -76,7 +76,7 @@ INSERT INTO `inscripcion` (`idInscripcion`, `nota`, `idAlumno`, `idMateria`) VAL
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `materia`
+-- Table structure for table `materia`
 --
 
 CREATE TABLE `materia` (
@@ -87,28 +87,29 @@ CREATE TABLE `materia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
--- Volcado de datos para la tabla `materia`
+-- Dumping data for table `materia`
 --
 
 INSERT INTO `materia` (`idMateria`, `nombre`, `año`, `estado`) VALUES
 (1, 'Matematica', 1, 1),
 (2, 'Lengua', 2, 1),
 (3, 'Musica', 1, 1),
-(4, 'Geografia', 3, 1);
+(4, 'Geografia', 3, 1),
+(5, 'Historia Argentina', 5, 1);
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `alumno`
+-- Indexes for table `alumno`
 --
 ALTER TABLE `alumno`
   ADD PRIMARY KEY (`idAlumno`),
   ADD UNIQUE KEY `dni` (`dni`);
 
 --
--- Indices de la tabla `inscripcion`
+-- Indexes for table `inscripcion`
 --
 ALTER TABLE `inscripcion`
   ADD PRIMARY KEY (`idInscripcion`),
@@ -116,40 +117,40 @@ ALTER TABLE `inscripcion`
   ADD KEY `idMateria` (`idMateria`);
 
 --
--- Indices de la tabla `materia`
+-- Indexes for table `materia`
 --
 ALTER TABLE `materia`
   ADD PRIMARY KEY (`idMateria`),
   ADD UNIQUE KEY `nombre` (`nombre`);
 
 --
--- AUTO_INCREMENT de las tablas volcadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de la tabla `alumno`
+-- AUTO_INCREMENT for table `alumno`
 --
 ALTER TABLE `alumno`
   MODIFY `idAlumno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT de la tabla `inscripcion`
+-- AUTO_INCREMENT for table `inscripcion`
 --
 ALTER TABLE `inscripcion`
-  MODIFY `idInscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idInscripcion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de la tabla `materia`
+-- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Restricciones para tablas volcadas
+-- Constraints for dumped tables
 --
 
 --
--- Filtros para la tabla `inscripcion`
+-- Constraints for table `inscripcion`
 --
 ALTER TABLE `inscripcion`
   ADD CONSTRAINT `inscripcion_ibfk_1` FOREIGN KEY (`idAlumno`) REFERENCES `alumno` (`idAlumno`),
