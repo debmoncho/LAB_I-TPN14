@@ -205,8 +205,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
                  java.util.Date fdate = java.util.Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant());
                  jtdFecha.setDate(fdate);
                  
-             }
-             
+             } 
         }
         
         catch(NumberFormatException msj){
