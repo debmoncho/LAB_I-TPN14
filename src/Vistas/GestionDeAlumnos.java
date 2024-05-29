@@ -81,6 +81,11 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
         });
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbNuevo.setText("Nuevo");
         jbNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +95,11 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
         });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,9 +173,7 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
                     .addComponent(jrbEstado))
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel6)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jtdFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(78, 78, 78)
@@ -173,8 +181,8 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
                             .addComponent(jbEliminar)
                             .addComponent(jbNuevo)
                             .addComponent(jbGuardar)
-                            .addComponent(jbSalir))
-                        .addContainerGap(43, Short.MAX_VALUE))))
+                            .addComponent(jbSalir))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -211,6 +219,15 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
+        if(alumnoActual != null){
+        
+            aluData.eliminarAlumno(alumnoActual.getIdAlumno());
+            alumnoActual = null;
+            limpiarCampos();
+        } else {
+            JOptionPane.showMessageDialog(this, "Alumno no encontrado");
+        }
+        
     }//GEN-LAST:event_jbEliminarActionPerformed
 
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
@@ -219,6 +236,44 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
         alumnoActual = null;
         
     }//GEN-LAST:event_jbNuevoActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        // TODO add your handling code here:
+        try {
+            Integer dni = Integer.parseInt(jtfDocumento.getText());
+            String nombre = jtfNombre.getText();
+            String apellido = jtfApellido.getText();
+            
+            if(nombre.isEmpty() || apellido.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios");
+                return;
+            }
+
+        java.util.Date fecha = jtdFecha.getDate();
+        LocalDate fechaNac = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        Boolean estado = jrbEstado.isSelected();
+        
+        if(alumnoActual == null) {
+            alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado);
+            aluData.guardarAlumno(alumnoActual);
+        } else {
+            alumnoActual.setDni(dni);
+            alumnoActual.setApellido(apellido);
+            alumnoActual.setNombre(nombre);
+            alumnoActual.setFechaNac(fechaNac);
+            aluData.modificarAlumno(alumnoActual);
+        }
+        
+        } catch(NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo guardar el alumno");
+        }
+        
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
