@@ -18,6 +18,8 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
 
     private List<Materia> listaM;
     private List<Alumno> listaA;
+    private List<Inscripcion> listaI;
+    
     
     private InscripcionData inscData;
     private MateriaData mData;
@@ -75,15 +77,20 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
     
     private void cargaDatosInscriptas() {
     
-        //borrarFilasTabla();
+
        Alumno select = (Alumno)cboxAlumno.getSelectedItem();
-       List<Materia> lista = inscData.obtenerMateriaCursada(select.getIdAlumno());
+       listaI = inscData.obtenerInscripciones();
        
-       for (Materia m : lista){
+       for (Inscripcion m : listaI){
        
-           modelo.addRow(new Object[] {m.getIdMateria(), m.getNombre(), insc.getNota()});
+           //modelo.addRow(new Object[] {m.getMateria().getIdMateria(),m.getAlumno().getIdAlumno(), m.getNota()});
+           modelo.addRow(new Object[] {m.getMateria().getIdMateria(), m.getMateria().getNombre() , m.getNota()});
        }     
     }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -188,7 +195,29 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
+
+        int filaSeleccionada = jTabla.getSelectedRow();
+        
+        if(filaSeleccionada != -1){
+            Alumno a = (Alumno)cboxAlumno.getSelectedItem();
+            
+            System.out.println("alumno " + a);
+            
+            int idMateria = (Integer)modelo.getValueAt(filaSeleccionada, 0);
+            
+            String n = (String)modelo.getValueAt(filaSeleccionada, 2);
+            
+            System.out.println("id materia y nota " + idMateria + " " + n);
+            
+            int nota = Integer.parseInt(n);
+            
+            System.out.println("Nota: " + nota);
+            
+            inscData.actualizarNota(a.getIdAlumno(), idMateria, nota);
+            
+            borrarFilasTabla();
+        }
+        
         
     }//GEN-LAST:event_jbGuardarActionPerformed
 
