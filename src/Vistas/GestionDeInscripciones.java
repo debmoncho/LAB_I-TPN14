@@ -94,9 +94,7 @@ public class GestionDeInscripciones extends javax.swing.JInternalFrame {
            modelo.addRow(new Object[] {m.getIdMateria(), m.getNombre(), m.getAnioMateria()});
        }     
     }
-    
-    
-    
+
     
     /**
      * This method is called from within the constructor to initialize the form.
