@@ -18,6 +18,7 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
 
     private List<Materia> listaM;
     private List<Alumno> listaA;
+    private List<Inscripcion> listaI;
     
     private InscripcionData inscData;
     private MateriaData mData;
@@ -77,13 +78,14 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
     
         //borrarFilasTabla();
        Alumno select = (Alumno)cboxAlumno.getSelectedItem();
-       List<Materia> lista = inscData.obtenerMateriaCursada(select.getIdAlumno());
+       List<Materia> lista = inscData.obtenerMateriaCursada(select.getIdAlumno());   
        
        for (Materia m : lista){
        
            modelo.addRow(new Object[] {m.getIdMateria(), m.getNombre(), insc.getNota()});
        }     
     }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
