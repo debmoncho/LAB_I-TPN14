@@ -72,7 +72,7 @@ public class ListadoAlumnoPorMateria extends javax.swing.JInternalFrame {
         }
     }
     
-    private void CargaDatosInscriptas() {
+    private void cargaDatosInscriptas() {
     
        Materia select = (Materia)jcbMateria.getSelectedItem();
        List<Alumno> lista = inscData.obtenerAlumnoPorMateria(select.getIdMateria());
@@ -101,6 +101,12 @@ public class ListadoAlumnoPorMateria extends javax.swing.JInternalFrame {
         jLabel1.setText("Listado de Alumno por Materia");
 
         jLabel2.setText("Seleccione una Materia:");
+
+        jcbMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbMateriaActionPerformed(evt);
+            }
+        });
 
         jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -151,6 +157,12 @@ public class ListadoAlumnoPorMateria extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jcbMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMateriaActionPerformed
+        // TODO add your handling code here:
+        borrarFilasTabla();
+        cargaDatosInscriptas();
+    }//GEN-LAST:event_jcbMateriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
