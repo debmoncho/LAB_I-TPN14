@@ -6,6 +6,7 @@ package Vistas;
 
 import AccesoADatos.*;
 import entidades.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -258,22 +259,23 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
         try {
 
             Integer id = Integer.parseInt(jtfCodigo.getText());
-            //ahora creamos el objeto "aludata" arriba de esta clase
+            
+            //ahora creamos el objeto "matdata" arriba de esta clase
             materiaActual = matData.buscarMateria(id);
 
             if(materiaActual != null){
 
                 jtfNombre.setText(materiaActual.getNombre());
-                Integer Anio = Integer.parseInt(jtfAnio.getText());
-                jtfAnio.setInt(materiaActual.getAnioMateria());
-                jrbEstado.setSelected(materiaActual.isActivo());
 
+                jtfAnio.setText(materiaActual.getAnioMateria()+ "");
+                
+                jrbEstado.setSelected(materiaActual.isActivo());
             }
         }
 
         catch(NumberFormatException msj){
 
-            JOptionPane.showMessageDialog(this, "Debe ingresar un DNI Valido!");
+            JOptionPane.showMessageDialog(this, "Debe ingresar un Id de Materia Valido!");
         }
 
     }//GEN-LAST:event_jbBuscarActionPerformed
