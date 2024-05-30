@@ -105,6 +105,12 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Seleccione un Alumno:");
 
+        cboxAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboxAlumnoActionPerformed(evt);
+            }
+        });
+
         jTabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -119,6 +125,11 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTabla);
 
         jbGuardar.setText("Guardar");
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbGuardarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -175,6 +186,17 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void cboxAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboxAlumnoActionPerformed
+        // TODO add your handling code here:
+        borrarFilasTabla();
+        cargaDatosInscriptas();
+    }//GEN-LAST:event_cboxAlumnoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
