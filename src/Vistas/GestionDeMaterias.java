@@ -199,16 +199,16 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
     private void jbNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbNuevoActionPerformed
 
         limpiarCampos();
-        alumnoActual = null;
+        materiaActual = null;
 
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
         // TODO add your handling code here:
-        if(alumnoActual != null){
+        if(materiaActual != null){
 
-            aluData.eliminarAlumno(alumnoActual.getIdAlumno());
-            alumnoActual = null;
+            matData.eliminarMateria(materiaActual.getIdMateria());
+            materiaActual = null;
             limpiarCampos();
         } else {
             JOptionPane.showMessageDialog(this, "Alumno no encontrado");
@@ -219,28 +219,24 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
         try {
-            Integer dni = Integer.parseInt(jtfDocumento.getText());
+            Integer id = Integer.parseInt(jtfCodigo.getText());
             String nombre = jtfNombre.getText();
-            String apellido = jtfApellido.getText();
+            Integer anio = Integer.parseInt(jtfAnio.getText());
 
-            if(nombre.isEmpty() || apellido.isEmpty()){
+            if(nombre.isEmpty() || anio == 0){
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios");
                 return;
             }
 
-            java.util.Date fecha = jtdFecha.getDate();
-            LocalDate fechaNac = fecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             Boolean estado = jrbEstado.isSelected();
 
-            if(alumnoActual == null) {
-                alumnoActual = new Alumno(dni, apellido, nombre, fechaNac, estado);
-                aluData.guardarAlumno(alumnoActual);
+            if(materiaActual == null) {
+                materiaActual = new Materia(nombre, anio, estado);
+                matData.guardarMateria(materiaActual);
             } else {
-                alumnoActual.setDni(dni);
-                alumnoActual.setApellido(apellido);
-                alumnoActual.setNombre(nombre);
-                alumnoActual.setFechaNac(fechaNac);
-                aluData.modificarAlumno(alumnoActual);
+                materiaActual.setNombre(nombre);
+                materiaActual.setAnioMateria(anio);
+                matData.modificarMateria(materiaActual);
             }
 
         } catch(NumberFormatException ex) {
@@ -266,9 +262,7 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
             if(materiaActual != null){
 
                 jtfNombre.setText(materiaActual.getNombre());
-
-                jtfAnio.setText(materiaActual.getAnioMateria()+ "");
-                
+                jtfAnio.setText(materiaActual.getAnioMateria()+ ""); 
                 jrbEstado.setSelected(materiaActual.isActivo());
             }
         }
@@ -297,4 +291,12 @@ public class GestionDeMaterias extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtfCodigo;
     private javax.swing.JTextField jtfNombre;
     // End of variables declaration//GEN-END:variables
+    public void limpiarCampos() {
+        jtfCodigo.setText("");
+        jtfNombre.setText("");
+        jtfAnio.setText("");
+        jrbEstado.setSelected(true);
+        
+    }
+
 }
