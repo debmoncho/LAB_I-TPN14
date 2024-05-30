@@ -28,7 +28,6 @@ public class Inscripcion {
         this.materia = materia;
     }
 
-    
 
     public int getIdInscripcion() {
         return idInscripcion;
