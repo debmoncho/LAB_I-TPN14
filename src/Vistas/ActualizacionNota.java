@@ -205,11 +205,29 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
             
             int idMateria = (Integer)modelo.getValueAt(filaSeleccionada, 0);
             
-            String n = (String)modelo.getValueAt(filaSeleccionada, 2);
             
-            System.out.println("id materia y nota " + idMateria + " " + n);
+            // Obtén el valor de la columna como Object
+            Object value = modelo.getValueAt(filaSeleccionada, 2);
+
+            // Convertir el valor a String de forma segura
+            String n;
+            if (value instanceof Double) {
+                n = String.valueOf(value);
+            } else if (value instanceof String) {
+                n = (String) value;
+            } else {
+                throw new IllegalArgumentException("Tipo de dato inesperado en la columna 2: " + value.getClass().getName());
+            }
+
             
-            int nota = Integer.parseInt(n);
+            System.out.println("id materia: " + idMateria + " - y nota: " + n);
+            
+            
+            // Convertir el String a double
+            double notaDouble = Double.parseDouble(n);
+            
+            // Convertir el double a int si es necesario
+            int nota = (int) notaDouble;
             
             System.out.println("Nota: " + nota);
             
