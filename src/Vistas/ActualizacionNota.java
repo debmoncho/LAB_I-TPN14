@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Vistas;
 
 import AccesoADatos.*;
@@ -28,9 +25,12 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
     private Inscripcion insc;
     
     private DefaultTableModel modelo;
+    
     /**
      * Creates new form ActualizacionNota
      */
+    
+    
     public ActualizacionNota() {
         initComponents();
         
@@ -77,15 +77,39 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
     
     private void cargaDatosInscriptas() {
     
+        
+        /*Dejamos esta parte del codigo desactivado por que no estaba funcionando adecuadamente
+        Mostraba TODAS las inscripciones sin discriminar por alumno, y cuando se cambiaba
+        entre alumnos, no se alteraba el listado de materias y notas*/
 
-       Alumno select = (Alumno)cboxAlumno.getSelectedItem();
-       listaI = inscData.obtenerInscripciones();
-       
-       for (Inscripcion m : listaI){
-       
-           //modelo.addRow(new Object[] {m.getMateria().getIdMateria(),m.getAlumno().getIdAlumno(), m.getNota()});
-           modelo.addRow(new Object[] {m.getMateria().getIdMateria(), m.getMateria().getNombre() , m.getNota()});
-       }     
+//       Alumno select = (Alumno)cboxAlumno.getSelectedItem();
+//       listaI = inscData.obtenerInscripciones();
+//       
+//       for (Inscripcion m : listaI){
+//       
+//           //modelo.addRow(new Object[] {m.getMateria().getIdMateria(),m.getAlumno().getIdAlumno(), m.getNota()});
+//           modelo.addRow(new Object[] {m.getMateria().getIdMateria(), m.getMateria().getNombre() , m.getNota()});
+//       }     
+
+
+        /* este codigo muestra adecuadamente la informacion*/
+
+        Alumno select = (Alumno) cboxAlumno.getSelectedItem();
+        
+        if (select != null) {
+
+            listaI = inscData.obtenerInscripcionesPorAlumno(select.getIdAlumno());
+
+            borrarFilasTabla();
+
+            for (Inscripcion m : listaI) {
+                modelo.addRow(new Object[]{m.getMateria().getIdMateria(), m.getMateria().getNombre(), m.getNota()});
+            }
+        }
+
+
+
+
     }
     
     
@@ -150,12 +174,6 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addComponent(jbGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbSalir)
-                .addGap(69, 69, 69))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
@@ -167,7 +185,12 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
                                 .addComponent(cboxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
-                        .addComponent(jLabel1)))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jbGuardar)
+                        .addGap(124, 124, 124)
+                        .addComponent(jbSalir)))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -179,19 +202,21 @@ public class ActualizacionNota extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(cboxAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbSalir))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        // TODO add your handling code here:
+        
+        this.dispose();
+        
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
