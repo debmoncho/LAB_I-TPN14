@@ -89,7 +89,8 @@ public class AlumnoData {
 
     public Alumno buscarAlumno(int id) {
 
-        String sql = "SELECT  dni, apellido, nombre, fechaDeNacimiento FROM alumno WHERE idAlumno= ? AND estado= 1";
+        String sql = "SELECT  dni, apellido, nombre, fechaDeNacimiento"
+                + "FROM alumno WHERE idAlumno= ? AND estado= 1";
         Alumno alumno = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -145,18 +146,19 @@ public class AlumnoData {
         return alumno;
     }
     
-     public List<Alumno> listarAlumno() {
-         
+    
+    public List<Alumno> listarAlumno() {
+
         String sql = "SELECT  idAlumno, dni, apellido, nombre, fechaDeNacimiento FROM alumno WHERE  estado= 1";
         ArrayList<Alumno> alumnos = new ArrayList<>();
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-         
+
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()) {
-                
-               Alumno alumno = new Alumno();
+            while (rs.next()) {
+
+                Alumno alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
                 alumno.setDni(rs.getInt("dni"));
                 alumno.setApellido(rs.getString("apellido"));
@@ -164,15 +166,14 @@ public class AlumnoData {
                 alumno.setFechaNac(rs.getDate("fechaDeNacimiento").toLocalDate());
                 alumno.setActivo(true);
                 alumnos.add(alumno);
-            } 
-             
-            
+            }
+
             ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al buscar alumno ");
         }
-        
+
         return alumnos;
     }
     
