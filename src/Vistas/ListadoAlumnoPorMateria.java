@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Vistas;
 
 import AccesoADatos.*;
@@ -24,9 +21,13 @@ public class ListadoAlumnoPorMateria extends javax.swing.JInternalFrame {
     private AlumnoData aData;
     
     private DefaultTableModel modelo;
+    
+    
     /**
      * Creates new form ListadoAlumnoPorMateria
      */
+    
+    
     public ListadoAlumnoPorMateria() {
         initComponents();
         
@@ -72,6 +73,8 @@ public class ListadoAlumnoPorMateria extends javax.swing.JInternalFrame {
         }
     }
     
+    
+    
     private void cargaDatosInscriptas() {
     
        Materia select = (Materia)jcbMateria.getSelectedItem();
@@ -82,6 +85,8 @@ public class ListadoAlumnoPorMateria extends javax.swing.JInternalFrame {
            modelo.addRow(new Object[] {a.getIdAlumno(),a.getDni() ,a.getNombre(), a.getApellido()});
        }     
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,12 +176,14 @@ public class ListadoAlumnoPorMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
     private void jcbMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbMateriaActionPerformed
-        // TODO add your handling code here:
+
         borrarFilasTabla();
         cargaDatosInscriptas();
     }//GEN-LAST:event_jcbMateriaActionPerformed
 
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
         this.dispose();

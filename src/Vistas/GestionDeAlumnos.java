@@ -240,7 +240,8 @@ public class GestionDeAlumnos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbNuevoActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
+
+        
         try {
             Integer dni = Integer.parseInt(jtfDocumento.getText());
             String nombre = jtfNombre.getText();
